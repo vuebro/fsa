@@ -1,0 +1,37 @@
+{
+  "name": "@vuebro/fsa",
+  "version": "2.1.28",
+  "description": "File System Access API wrapper",
+  "keywords": [
+    "File System Access API"
+  ],
+  "homepage": "https://github.com/vuebro/fsa#readme",
+  "bugs": {
+    "url": "https://github.com/vuebro/fsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuebro/fsa.git"
+  },
+  "license": "AGPL-3.0-only",
+  "author": {
+    "name": "Jerry Bruwes",
+    "email": "jbruwes@gmail.com"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ."
+  },
+  "prettier": "@vuebro/configs/prettierrc",
+  "devDependencies": {
+    "@smithy/types": "^4.8.1",
+    "@types/node": "24.10.0",
+    "@vuebro/configs": "^1.1.62",
+    "eslint": "^9.39.1"
+  }
+}

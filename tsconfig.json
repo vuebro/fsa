@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": { "lib": ["DOM", "DOM.AsyncIterable", "ES2020"] },
+  "extends": ["@vuebro/configs/tsconfig"],
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}

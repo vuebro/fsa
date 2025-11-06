@@ -48,7 +48,10 @@ const getHandle = (
  * @param Key - The path to the object to delete
  * @returns A promise that resolves when the object is deleted
  */
-const deleteObject = async (Bucket: FileSystemDirectoryHandle, Key: string) => {
+export const deleteObject = async (
+    Bucket: FileSystemDirectoryHandle,
+    Key: string,
+  ) => {
     const keys = Key.split("/"),
       name = keys.pop();
     if (name) {
@@ -139,13 +142,3 @@ const deleteObject = async (Bucket: FileSystemDirectoryHandle, Key: string) => {
       );
     }
   };
-
-export {
-  deleteObject,
-  getHandle,
-  getObjectBlob,
-  getObjectText,
-  headObject,
-  putObject,
-  removeEmptyDirectories,
-};

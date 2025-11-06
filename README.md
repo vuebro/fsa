@@ -40,14 +40,7 @@ Note: Support in other browsers may vary. Check [caniuse.com](https://caniuse.co
 
 The library provides the following functions:
 
-### `getHandle(Bucket, Key, create?)`
 
-Gets a file or directory handle from the file system
-
-- `Bucket` - The root directory handle (`FileSystemDirectoryHandle`)
-- `Key` - The path to the file or directory (string)
-- `create` - Whether to create the directory if it doesn't exist (boolean, optional, default: false)
-- Returns: Promise resolving to `FileSystemDirectoryHandle | FileSystemFileHandle | undefined`
 
 ### `deleteObject(Bucket, Key)`
 
@@ -104,7 +97,6 @@ First, you'll need to get a directory handle from the user using the File System
 
 ```javascript
 import { 
-  getHandle, 
   putObject, 
   getObjectText, 
   deleteObject, 
@@ -138,8 +130,7 @@ try {
 // Example: Delete a file
 await deleteObject(directoryHandle, 'path/to/file.txt');
 
-// Example: Get file/directory handle
-const handle = await getHandle(directoryHandle, 'path/to/directory');
+
 
 // Example: Remove empty directories (excluding specific ones)
 await removeEmptyDirectories(directoryHandle, ['.git', 'node_modules']);

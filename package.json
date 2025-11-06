@@ -1,6 +1,6 @@
 {
   "name": "@vuebro/fsa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "File System Access API wrapper",
   "keywords": [
     "File System Access API"

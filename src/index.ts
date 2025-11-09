@@ -13,33 +13,35 @@ const getHandle = (
   Key: string,
   create = false,
 ) =>
-  Key.split("/").reduce(
-    async (
-      previousValue: Promise<
-        FileSystemDirectoryHandle | FileSystemFileHandle | undefined
-      >,
-      currentValue,
-      currentIndex,
-      array,
-    ) => {
-      const handle = await previousValue;
-      if (handle?.kind === "directory" && currentValue)
-        try {
-          return await handle.getDirectoryHandle(currentValue, { create });
-        } catch {
-          if (currentIndex === array.length - 1)
+  Key
+    ? Key.split("/").reduce(
+        async (
+          previousValue: Promise<
+            FileSystemDirectoryHandle | FileSystemFileHandle | undefined
+          >,
+          currentValue,
+          currentIndex,
+          array,
+        ) => {
+          const handle = await previousValue;
+          if (handle?.kind === "directory" && currentValue)
             try {
-              return await handle.getFileHandle(currentValue, {
-                create: false,
-              });
+              return await handle.getDirectoryHandle(currentValue, { create });
             } catch {
-              return;
+              if (currentIndex === array.length - 1)
+                try {
+                  return await handle.getFileHandle(currentValue, {
+                    create: false,
+                  });
+                } catch {
+                  return;
+                }
             }
-        }
-      return;
-    },
-    Promise.resolve(Bucket),
-  );
+          return;
+        },
+        Promise.resolve(Bucket),
+      )
+    : Promise.resolve(Bucket);
 
 /**
  * Deletes an object from the file system

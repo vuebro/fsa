@@ -1,6 +1,6 @@
 {
   "name": "@vuebro/fsa",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A TypeScript library providing a File System Access API wrapper for web applications. Offers AWS S3-like operations (get, put, delete, head) to interact with local file systems efficiently in modern browsers.",
   "keywords": [
     "file-system-access",

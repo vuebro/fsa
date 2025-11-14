@@ -1,4 +1,5 @@
 {
+  "$schema": "https://www.schemastore.org/package",
   "name": "@vuebro/fsa",
   "version": "1.0.7",
   "description": "A TypeScript library providing a File System Access API wrapper for web applications. Offers AWS S3-like operations (get, put, delete, head) to interact with local file systems efficiently in modern browsers.",
@@ -42,7 +43,7 @@
   "devDependencies": {
     "@smithy/types": "^4.9.0",
     "@types/node": "24.10.1",
-    "@vuebro/configs": "^1.2.0",
+    "@vuebro/configs": "^1.2.1",
     "eslint": "^9.39.1"
   }
 }

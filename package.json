@@ -40,9 +40,9 @@
   },
   "prettier": "@vuebro/configs/prettierrc",
   "devDependencies": {
-    "@smithy/types": "^4.8.1",
-    "@types/node": "24.10.0",
-    "@vuebro/configs": "^1.1.77",
+    "@smithy/types": "^4.9.0",
+    "@types/node": "24.10.1",
+    "@vuebro/configs": "^1.2.0",
     "eslint": "^9.39.1"
   }
 }

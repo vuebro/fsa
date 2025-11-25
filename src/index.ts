@@ -1,13 +1,5 @@
 import type { StreamingBlobPayloadInputTypes } from "@smithy/types";
 
-/**
- * Gets a file or directory handle from the file system
- *
- * @param Bucket - The root directory handle
- * @param Key - The path to the file or directory
- * @param create - Whether to create the directory if it doesn't exist
- * @returns The file or directory handle
- */
 const getHandle = (
   Bucket: FileSystemDirectoryHandle,
   Key: string,
@@ -43,13 +35,6 @@ const getHandle = (
       )
     : Promise.resolve(Bucket);
 
-/**
- * Deletes an object from the file system
- *
- * @param Bucket - The root directory handle
- * @param Key - The path to the object to delete
- * @returns A promise that resolves when the object is deleted
- */
 export const deleteObject = async (
     Bucket: FileSystemDirectoryHandle,
     Key: string,
@@ -61,47 +46,18 @@ export const deleteObject = async (
       if (handle?.kind === "directory") await handle.removeEntry(name);
     }
   },
-  /**
-   * Gets an object as a Blob from the file system
-   *
-   * @param Bucket - The root directory handle
-   * @param Key - The path to the object
-   * @returns The object as a Blob
-   */
   getObjectBlob = async (Bucket: FileSystemDirectoryHandle, Key: string) => {
     const handle = await getHandle(Bucket, Key);
     if (handle?.kind === "file") return handle.getFile();
     return new Blob();
   },
-  /**
-   * Gets an object as text from the file system
-   *
-   * @param Bucket - The root directory handle
-   * @param Key - The path to the object
-   * @returns The object as text
-   */
   getObjectText = async (Bucket: FileSystemDirectoryHandle, Key: string) =>
     (await getObjectBlob(Bucket, Key)).text(),
-  /**
-   * Checks if an object exists in the file system
-   *
-   * @param Bucket - The root directory handle
-   * @param Key - The path to the object
-   * @returns Returns undefined if object exists, throws error if not
-   */
   headObject = async (Bucket: FileSystemDirectoryHandle, Key: string) => {
     const handle = await getHandle(Bucket, Key);
     if (handle?.kind === "file") return undefined;
     throw new Error("It's not a file");
   },
-  /**
-   * Puts an object into the file system
-   *
-   * @param Bucket - The root directory handle
-   * @param Key - The path to store the object at
-   * @param body - The content of the object
-   * @returns A promise that resolves when the object is stored
-   */
   putObject = async (
     Bucket: FileSystemDirectoryHandle,
     Key: string,
@@ -119,13 +75,6 @@ export const deleteObject = async (
       }
     }
   },
-  /**
-   * Removes empty directories from the file system
-   *
-   * @param directory - The directory to process
-   * @param exclude - Directories to exclude from removal
-   * @returns A promise that resolves when the operation is complete
-   */
   removeEmptyDirectories = async (
     directory: FileSystemDirectoryHandle,
     exclude: string[],

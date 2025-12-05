@@ -43,7 +43,7 @@
   "devDependencies": {
     "@smithy/types": "^4.9.0",
     "@types/node": "24.10.1",
-    "@vuebro/configs": "^1.2.17",
+    "@vuebro/configs": "^1.2.23",
     "eslint": "^9.39.1"
   }
 }

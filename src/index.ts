@@ -49,14 +49,14 @@ export const deleteObject = async (
   getObjectBlob = async (Bucket: FileSystemDirectoryHandle, Key: string) => {
     const handle = await getHandle(Bucket, Key);
     if (handle?.kind === "file") return handle.getFile();
-    return new Blob();
+    else return new Blob();
   },
   getObjectText = async (Bucket: FileSystemDirectoryHandle, Key: string) =>
     (await getObjectBlob(Bucket, Key)).text(),
   headObject = async (Bucket: FileSystemDirectoryHandle, Key: string) => {
     const handle = await getHandle(Bucket, Key);
     if (handle?.kind === "file") return undefined;
-    throw new Error("It's not a file");
+    else throw new Error("It's not a file");
   },
   putObject = async (
     Bucket: FileSystemDirectoryHandle,
@@ -68,10 +68,14 @@ export const deleteObject = async (
     if (name) {
       const handle = await getHandle(Bucket, keys.join("/"), true);
       if (handle?.kind === "directory") {
-        const fileHandle = await handle.getFileHandle(name, { create: true }),
-          writable = await fileHandle.createWritable();
-        await writable.write(body as FileSystemWriteChunkType);
-        await writable.close();
+        const writable = await (
+          await handle.getFileHandle(name, { create: true })
+        ).createWritable();
+        try {
+          await writable.write(body as FileSystemWriteChunkType);
+        } finally {
+          await writable.close();
+        }
       }
     }
   },
